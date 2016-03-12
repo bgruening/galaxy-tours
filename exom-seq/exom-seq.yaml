@@ -1,0 +1,445 @@
+name: Exome Sequencing
+description: Sequencing all the protein-coding genes in a genome, the EXOME
+title_default: "Exome Sequencing"
+steps:
+    - title: "A tutorial on Exome Sequencing"
+      content: "This tour will walk you through the process of Exome Sequencing to identify genetic variations.<br><br>
+                Read and Follow the instructions before clicking 'Next'<br>
+                Click 'Prev' in case you missed out on any step"
+      backdrop: true
+
+    - title: "Create a new history"
+      element: '#history-options-button'
+      intro: "Let's start by creating a new history:<br>
+              (History options :: Create New)"
+      position: "left"
+      preclick:
+        - '#center-panel'
+
+    - title: "Rename history"
+      element: "#current-history-panel > div.controls > div.title > div"
+      intro: "Change the name of the new history to 'Exome Sequencing'."
+      position: "bottom"
+
+    - title: "Data Acquisition"
+      content: "We will start with a bunch of BAM files.<br>
+                You will get one BAM file with all aligned reads for each family member.<br>
+                The mother/father are healthy but the child has a yet unknown disease."
+      backdrop: true
+
+    - title: "Data Acquisition"
+      element: ".upload-button"
+      intro: "We will import all 3 BAM's into into the history we just created.<br>
+              Click 'Next' and the tour will take you to the Upload screen"
+      position: "right"
+      postclick:
+        - ".upload-button"
+        
+    - title: "Data Acquisition"
+      element: "button#btn-new"
+      intro: "The sample training data available on github is a good place to start.<br>
+              Simple click 'Next' and the links to the training data will be automatically inserted and ready for upload.<br>
+              Later on, when want to upload other data, you can do so by clicking the 'Paste/Fetch Data' button"
+      position: "top"
+      postclick:
+        - "button#btn-new"
+        
+    - title: "Data Acquisition"
+      element: "textarea#text-content"
+      intro: "Links Acquired !"
+      position: "top"
+      textinsert: |
+        https://github.com/bgruening/training_data/blob/master/Father
+        https://github.com/bgruening/training_data/blob/master/Mother
+        https://github.com/bgruening/training_data/blob/master/Patient   
+       
+    - title: "Data Acquisition"
+      element: "button#btn-start"
+      intro: "Click on 'Start' to upload the data into your Galaxy history."
+      position: "bottom"
+      
+    - title: "Data Acquisition"
+      element: "button#btn-close"
+      intro: "The upload may take awhile.<br>
+              Hit the close button when you see that the files are uploaded into your history."
+      position: "bottom"
+      
+    - title: "Data Acquisition"
+      element: '#current-history-panel'
+      intro: "You've acquired your data.<br>
+              Now let's 'Edit Attributes' of the uploaded files.<br>
+              We will learn to edit the name, Database/Build and Datatype of all 3 files.<br><br>
+
+              For each of the 3 uploaded files:<br>
+               1. Click on the pencil icon beside the file to 'Edit Attributes'.<br>
+               2. In the 'Attributes' tab:<br>
+                  - Edit the name (Mother/Father/Patient as appropriate).<br>
+                  - Set Database/Build as 'Human Feb.2009(GRCh37/hg19)(hg19)'.<br>
+               3. In the 'Datatype' tab:<br>
+                  - Set New Type as 'bam'."                         
+      position: "left" 
+      
+    - title: "Data Acquisition Complete !"
+      content: "Now that your data is ready, let's use some tools.<br>"
+      backdrop: true
+
+    - title: "Exome Sequencing Tools"
+      element: ".toolMenuContainer"
+      intro: "Exome Sequencing uses various tools.<br>
+              Available tools appear here in the tool menu."
+      position: "right"
+      
+    - title: "Call Variants with 'FreeBayes'"
+      element: '#tool-search-query'
+      intro: "You can use 'tool search' to locate tools.<br>
+              For starters, click 'Next' and the tour will bring up the 'FreeBayes' tool for you.<br>
+              Tools may take a couple of moments to load, please bear with us."
+      position: "right"
+
+    - title: "Call Variants with 'FreeBayes'"
+      intro: "This is the FreeBayes tool.<br>"
+      position: "right"
+      preclick:
+        - 'a[href$="/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fdevteam%2Ffreebayes%2Ffreebayes%2F0.4.1"]'
+      postclick:
+        - "#title_stats a"
+
+    - element: '#uid-0'
+      intro: "Have a look at the tool's parameters.<br>     
+              Please select the first dataset as Sample BAM file.<br>
+              You can choose basic setting and call all variants from the 'Father'.<br>
+              Have a look at the advanced settings, to get an impression of how powerful it can be.<br> 
+              Click next and the tour will 'Execute' the FreeBayes tool for you."
+      position: "right"
+      
+    - title: "Call Variants with 'FreeBayes'"
+      element: '#current-history-panel'
+      intro: "Congratulations, you have created you first VCF file.<br>
+              It will remain stored in your history.<br>
+              It contains your called variants.<br>
+              Click the 'eye' icon to view the data."
+      position: "left"
+      preclick:
+        - '#execute'
+
+    - title: "Call Variants with 'FreeBayes'"
+      element: '#current-history-panel'
+      intro: "Further information on your VCF file:<br>
+              The lines starting with '#' are header lines. They mostly explain the keywords which are used to convey the information underneath. <br/>
+              In the lines following the header in each line, one variant is shown, with the genomic position, the reference and alternative allele in the first columns, the genotypes of the samples as the last three columns."
+      position: "left"
+
+    - title: "Post-Process Data with 'VcfAllelicPrimitives'"
+      element: '#tool-search-query'   
+      intro: "It's data post-processing time.<br>
+              Are you ready to use more tools?<br>
+              You can try out the tool search.<br>
+              Search and select the 'VcfAllelicPrimitives' tool."
+      position: "right"
+      
+    - title: "Post-Process Data with 'VcfAllelicPrimitives'"
+      element: '#center-panel'   
+      intro: "You've selected the VcfAllelicPrimitives tool.<br>
+              Set the parameter 'Maintain site and allele-level annotations when decomposing' to 'Yes'.<br>
+              This tool will take an MNP (e.g. ACCCA -> TCCCG) and break it up into separate records for each component part (A->T and A->G).<br>
+              Ensure that you have selected the Vcf file from your history.<br>
+              'Execute' the VcfAllelicPrimitives tool when you are ready"
+      position: "right"
+
+    - title: "Post-Process Data with 'VcfAllelicPrimitives'"
+      element: '#current-history-panel'
+      intro: "Good job !<br>
+              You used the 'VcfAllelicPrimitives' tool to maintain site/allele-level and genotype-level annotations when decomposing."
+      position: "left"
+      preclick:
+        - '#center-panel'
+
+    - title: "SnpSift Filter tool"
+      element: '#tool-search-query'   
+      intro: "Filter your VCF file with 'SnpSift Filter' (version 4.0.0).<br>
+              Search and select the 'SnpSift Filter' tool"
+      position: "right"
+      
+    - title: "SnpSift Filter tool"
+      element: 'field-uid-219'   
+      intro: "Set the parameters to have SNPs with a Quality >= 30 and a Coverage >= 10.<br>
+              A look at the examples should help you.<br>
+              In the next step the correct filter string will be given, but try to build it yourself."
+      position: "right"
+
+    - title: "SnpSift Filter tool"
+      element: 'field-uid-219'   
+      intro: "The filter could look like something like:<br>
+              '(QUAL >= 30) & (DP >= 10)'<br>
+              'Execute' the SnpSift Filter tool when you are ready."
+      position: "right"
+
+    - title: "Annotate your variants"
+      content: "We will now annotate our VCF file with some additional information.<br>
+                If a SNP is located on a protein coding gene it can potentially affect or even stop the protein from working properly.<br>
+                We will now add such functional information of known SNPs that are collected in a database called dbSNP"
+      backdrop: true
+      
+    - title: "Annotate your variants - Acquire 'dbSNP.vcf' "
+      element: ".upload-button" 
+      intro: "The dbSNP.vcf file is also available on github<br>
+              Try uploading this file from github. Click on the upload button."
+      position: "right"
+
+    - title: "Data Acquisition"
+      element: "button#btn-new"
+      intro: "Click on the Paste/Fetch data icon."
+      position: "top"
+
+    - title: "Data Acquisition"
+      element: "textarea#text-content"
+      intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
+              https://github.com/bgruening/training_data/blob/master/dbSNP_138.hg19.vcf"
+      position: "top"
+      
+    - title: "Data Acquisition"
+      element: "button#btn-start"
+      intro: "Click on 'Start' to upload the vcf file into your Galaxy history."
+      position: "bottom"
+
+    - title: "Data Acquisition"
+      element: "button#btn-close"
+      intro: "Hit the close button when the upload is complete."
+      position: "bottom"
+
+    - title: "Data Acquisition"
+      element: '#current-history-panel'
+      intro: "You've acquired the dbSNP.vcf file.<br>
+              Let's rename it. You know how to do this.<br>
+              Click on the pencil icon beside the file to 'Edit Attributes'.<br>
+              Now you can edit the name of the file."            
+      position: "left"
+      
+    - title: "Annotate your variants with 'SnpSift Annotate'"
+      element: '#tool-search-query'   
+      intro: "Time to assign know variants ID's from dbSNP to your variants.<br>
+              Search and select the 'SnpSift Annotate' for this task."
+      position: "right"
+
+    - title: "Annotate your variants with 'SnpSift Annotate'"
+      element: '#center-panel'   
+      intro: " The first selection box needs to refer to the VCF file that was generated by the FreeBayes tool.<br>
+               The second select box needs to refer to the dbSNP.vcf which we uploaded.<br>
+               Keep the remaining default parameters set.<br>
+              'Execute' the 'SnpSift Annotate' tool when you are ready."
+      position: "right"
+
+    - title: "Annotate your variants with 'SnpEff'"
+      element: '#tool-search-query'   
+      intro: "Now annotate your variants with some functional information.<br>
+              Search and select the 'SnpEff' (version 3.4) tool for this task."
+      position: "right"
+
+    - title: "Annotate your variants with 'SnpEff'"
+      element: '#center-panel'   
+      intro: "Keep the default parameters set. Make sure that the latest VCF file is selected in the first select box.<br>
+              Execute the 'SnpEff' tool when you are ready.<br>
+              Have a look at your INFO column again.<br>
+              You will get:<br>
+              - some gene names for your variants<br>
+              - a predicted impact<br>
+              - information on whether your variant is located inside a known exome."
+      position: "right"
+
+    - title: "First Annotation Completed !"
+      content: "At this stage you have your first annotated variants and in theory everything you need for your further studies included in your VCF file."
+      backdrop: true
+
+    - title: "Extracting a Workflow"
+      element: '#history-options-button'   
+      intro: "Please extract your history to a workflow.<br>
+              (History options :: Extract workflow :: Create Workflow)<br>
+              Give your worklow a catchy name. For example 'BAM to VCF in one click'"
+      position: "left"
+
+    - title: "Extracting a Workflow" 
+      content: "Now you can apply this workflow individually to the other 2 BAM files."
+      backdrop: true
+    
+    - title: "Running a Workflow"
+      element: 'a[href$="/workflow/list_for_run"]' 
+      intro: "Click on 'All Workflows' to access your saved workflows.<br>"
+      position: "top"
+
+    - title: "Running a Workflow"
+      element: '#center-panel'   
+      intro: "Select the workflow constructed from your history<br>
+              Check that the parameters are set correctly and choose as input the second bam file (which should be the second History item) and then select the 'Run workflow' option."
+      position: "right"
+
+    - title: "Annotation Completed !"
+      content: "You should now have 3 annotated variant files, from mother, father and the patient.<br>
+                It might be a good idea to rename them accordingly."
+      backdrop: true
+
+    - title: "File Combination with 'VCFcombine'"
+      element: '#tool-search-query'   
+      intro: "Combine all 3 files into one.<br>
+              Search and select the 'VCFcombine' tool for this task."
+      position: "right"     
+      
+    - title: "File Combination with 'VCFcombine'"
+      element: '#center-panel'   
+      intro: "Choose the three VCF files in the selection box.<br>
+              You can choose multiple items with:<br>
+                 'Ctrl - Leftclick'.<br>
+              'Execute' the 'VCFcombine' tool when you are ready.<br>"
+      position: "right"
+
+    - title: "Almost there !" 
+      backdrop: true 
+      content: "We are almost done. All the information we need is now stored in the VCF file which we just created. However, in order to find information that we are interested in quicker, we will now build a database which we can query with a very simple query language." 
+
+    - title: "Database Creation with 'GEMINI load'" 
+      element: ".upload-button"   
+      intro: "We will now use the tool 'GEMINI load' to create a database.<br>
+              The database will be based on your combined VCF file and a pedigree file.<br>
+              The 'family.ped' file is also available on github<br>
+              Upload this file from github. Click on the upload button."
+      position: "right"  
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: "button#btn-new"
+      intro: "Click on the Paste/Fetch data icon."
+      position: "top"
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: "textarea#text-content"
+      intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
+              https://github.com/bgruening/training_data/blob/master/family.ped"
+      position: "top"
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: "button#btn-start"
+      intro: "Click on 'Start' to upload the vcf file into your Galaxy history."
+      position: "bottom"
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: "button#btn-close"
+      intro: "Hit the close button when the upload is complete."
+      position: "bottom"
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: '#current-history-panel'
+      intro: "Click on the pencil icon to rename the pedigree file."          
+      position: "left"
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: '#center-panel'
+      intro: "Have a look at the pedigree file.<br>
+              Here's a little info on the columns of the file:<br>
+              - family_id: Each family has an id. The file shows that all 3 specimens are from the same family<br>
+              - sample_id: Each sample has an id. The file shows that the 3 specimens are the mother, the father & the patient(i.e. child)<br>
+              -	paternal_id: Id of the father. The file shows that the father of 'RS024P-PATIENT' has the ID 'RS024V-FATHER'. '-9' indicates 'no information'<br>
+              -	maternal_id: Id of the mother. The file shows that the mother of 'RS024P-PATIENT' has the ID 'RS024M-MOTHER'. '-9' indicates 'no information'<br>"
+      position: "right"
+      preclick:
+        - '#center-panel'
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: '#center-panel'
+      intro: "Here's a little info on the columns of the tabular file:<br>
+              -	sex: Sex / Gender of the specimen. '1' indicates that the specimen is male. '2' indicates that the specimen is female.   The file shoes that 'RS024P-PATIENT' is male i.e. the son of 'RS024V-FATHER' and 'RS024M-MOTHER'.<br>   
+              -	phenotype: '1' indicates that the specimen is not affected. '2' indicates that the specimen is affected. So, the file shows that 'RS024P-PATIENT' is affected.<br>
+              -	ethnicity: Ethnicity of the specimen. The file shows that the Father, Mother and Son are European."
+      position: "right"
+      preclick:
+        - '#center-panel'
+       
+    - title: "Database Creation with 'GEMINI load'"
+      element: '#tool-search-query'
+      intro: "Use the 'tool search' to bring up 'Gemini load'."
+      position: "right"
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: 'versions'
+      intro: "Good ! You've selected the 'Gemini load' tool.<br>
+              Change the version to 0.10.0.0."
+      position: "right"
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: '#center-panel'
+      intro: "Now choose the combined VCF file as input and 'family.ped' as input for 'Sample information file in PED+ format'.<br>
+              'Execute' the 'Gemini load' tool when you are ready.<br>
+              This process will take some time. But you should already go to the next step."
+      position: "right"
+      preclick:
+        - '#center-panel'
+
+    - title: "Database Creation with 'GEMINI load'"
+      element: '#current-history-panel'
+      intro: "'Gemini load' has been executed."
+      position: "left"
+      preclick:
+        - '#center-panel'                     
+
+    - title: "Test Database Upload"
+      element: ".upload-button"   
+      intro: "In order to show the power of a GEMINI database we have created one beforehand.<br>
+              Let's upload the 'GEMINI test database' from github"
+      position: "right"  
+
+    - title: "Test Database Upload"
+      element: "button#btn-new"
+      intro: "Click on the Paste/Fetch data icon."
+      position: "top"
+
+    - title: "Test Database Upload"
+      element: "textarea#text-content"
+      intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
+              https://github.com/bgruening/training_data/blob/master/GEMINI%20test%20database.tar.gz"
+      position: "top"
+
+    - title: "Test Database Upload"
+      element: "button#btn-start"
+      intro: "Click on 'Start' to upload the test database into your Galaxy history."
+      position: "bottom"
+
+    - title: "Test Database Upload"
+      element: "button#btn-close"
+      intro: "Hit the close button when the upload is complete."
+      position: "bottom"
+
+    - title: "Test Database Upload"
+      element: '#current-history-panel'
+      intro: "Click on the pencil icon to rename the test database.<br>
+              Also change the datatype to 'gemini.sqlite' under the 'Datatype' tab."          
+      position: "left"
+      
+    - title: "A tutorial on Exome Sequencing"
+      element: '#center-panel'
+      intro: "Either way you now have a database with:<br>
+                 - all your variants<br>
+                 - pedigree relations<br>
+                 - additional annotations<br>
+                 - quick search functionality" 
+      position: "right"
+      preclick:
+        - '#center-panel'       
+        
+    - title: "A tutorial on Exome Sequencing"
+      element: '#tool-search-query'
+      intro: "Have a look at all different GEMINI tools and run as many tools as possible on your test GEMINI databases.<br>
+              Try to get a feeling of what is possible with a variant database in GEMINI.<br>
+              Search for 'gemini' and explore the database we have provided or the one that you calculated."
+      position: "right"
+      preclick:
+        - '#center-panel'         
+        
+    - title: "A tutorial on Exome Sequencing"
+      element: '#current-history-panel'
+      intro: "You have reached the end of the tour.<br>
+              You can look at interesting positions in your variants.<br>
+              Before you finish, you can revisit your 3 BAM files (Mother, Father & Patient) and display them with local IGV."
+      position: "left"
+      preclick:
+        - '#center-panel'     
+
+    - title: "A tutorial on Exome Sequencing"
+      intro: "Thank You for trying out our tutorial."
+      backdrop: true                                                                                              
