@@ -3,7 +3,7 @@ description: Sequencing all the protein-coding genes in a genome, the EXOME
 title_default: "Exome Sequencing"
 steps:
     - title: "A tutorial on Exome Sequencing"
-      content: "This tour will walk you through the process of Exome Sequencing to identify genetic variations.<br><br>
+      content: "This tour will walk you through the process of Exome Sequencing to identify genetic variations.<br>
                 Read and Follow the instructions before clicking 'Next'<br>
                 Click 'Prev' in case you missed out on any step"
       backdrop: true
@@ -29,7 +29,7 @@ steps:
 
     - title: "Data Acquisition"
       element: ".upload-button"
-      intro: "We will import all 3 BAM's into into the history we just created.<br>
+      intro: "We will import all 3 BAM's into the history we just created.<br>
               Click 'Next' and the tour will take you to the Upload screen"
       position: "right"
       postclick:
