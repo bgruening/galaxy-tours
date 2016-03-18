@@ -3,401 +3,543 @@ description: From Peaks to Genes
 title_default: "Galaxy Introduction Exercise"
 steps:
 
-    - title: "Welcome to Galaxy !"
-      content: "This tour will walk you through an introductory exercise which guides you on how to use Galaxy. <br>
-                Read and Follow the instructions before clicking <b>'Next'</b>.<br>
+    - title: "<b>Welcome to Galaxy !</b>"
+      content: "This tour will walk you through an introductory exercise which guides you on how to use Galaxy. <br><br>
+                Read and Follow the instructions before clicking <b>'Next'</b>.<br><br>
                 Click <b>'Prev'</b> in case you missed out on any step"
       backdrop: true
       
-    - title: "Galaxy Introduction Exercise"
+    - title: "<b>Galaxy Introduction Exercise</b>"
       content: "Feel free to real the introductory literature available in the following locations:<br><br>
                 <a href=\"http://galaxy.uni-freiburg.de/u/tutor/d/f37679994cc2dc9b\" target=\"_blank\">1. Introduction to Galaxy by Sarah  Diehl</a> <br>
                 <a href=\" http://galaxy.uni-freiburg.de/u/tutor/d/c54a4721645c0a21\" target=\"_blank\">2. Galaxy course by Thomas Manke</a> <br><br>                
-                <b>Hint:</b> In Galaxy pages (like this document) everything underlined is a link you can click on."
+                <b>Hint:</b> In Galaxy pages (like this document) everything underlined is a link that you can click on."
 
-    - title: "Scenario"
+    - title: "<b>Scenario</b>"
       content: "We stumbled upon a paper <a href=\"http://www.cell.com/cell-stem-cell/abstract/S1934-5909%2812%2900334-7?_returnURL=http%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1934590912003347%3Fshowall%3Dtrue\" target=\"_blank\">Li et al., Cell Stem Cell 2012)</a>
-      that contains the analysis of possible target genes of an interesting protein. The targets were obtained by ChIP-seq and the raw data is available through <a href=\"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE37268\" target=\"_blank\">GEO</a>. The list of genes however is neither in the supplement of the paper nor part of the GEO submission. The closest thing we can find is a list of the regions where the signal is significantly enriched (<b>peaks;</b> you'll learn more on that shortly)."
+      that <b>contains the analysis of possible target genes of an interesting protein</b>. The targets were obtained by ChIP-seq and the raw data is available through <a href=\"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE37268\" target=\"_blank\">GEO</a>. The list of genes however is neither in the supplement of the paper nor part of the GEO submission. The closest thing we can find is a list of the regions where the signal is significantly enriched (<b>peaks;</b> you'll learn more on that shortly)."
       backdrop: true
 
-    - title: "Goal"
-      content: "The <b>goal</b> of this exercise is to turn this list of genomic regions into a list of possible target genes."
+    - title: "<b>Goal</b>"
+      content: "The goal of this exercise is to <b>turn this list of genomic regions into a list of possible target genes</b>."
       backdrop: true
 
-    - title: "Disclaimer"
-      content: "We are not affiliated with the authors of the paper and we don't make a statement about the relevance or quality of the paper. It is just a fitting example and nothing else.<br>"
+    - title: "<b>Disclaimer</b>"
+      content: "We are <b>not affiliated</b> with the authors of the paper and we don't make a statement about the relevance or quality of the paper. It is <b>just a fitting example</b> and nothing else.<br>"
       backdrop: true
 
-    - title: "Part 1: Naive approach - Step 1: Obtain peaks from GEO"
-      content: "We will now proceed to download the list of peaks (the file 'GSE37268_mof3.out.hpeak.txt.gz') from <a href=\"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE37268\" target=\"_blank\">GEO</a> to your computer and then upload the same file to Galaxy."
+    - title: "<b>An Overview</b>"
+      content: "Together we will go through the following:<br>
+                <b>Part 1: Naive approach:</b>
+                 <dir>
+                   <li>Step 1: Upload peaks</li>
+                   <li>Step 2: Get genes from UCSC</li>
+                   <li>Step 3: Adjust chromosome naming</li>
+                   <li>Step 4: Visualize peaks</li>
+                   <li>Step 5: Add promoter region to gene records</li>                   
+                   <li>Step 6: Find overlaps</li>   
+                   <li>Step 7: Count genes on different chromosomes</li> 
+                   <li>Step 8: Draw barchart</li> 
+                   <li>Step 9: Name  your history</li> 
+                   <li>Step 10: Make a workflow out of steps 6 to 8</li> 
+                   <li>Step 11: Share workflow</li>              
+                 </dir>
+                 <b>Part 2: More sophisticated approach:</b>
+                 <dir>
+                   <li>Step 12: Create new history</li>
+                   <li>Step 13: Copy over peak file to new history</li>
+                   <li>Step 14: Make peak summit file</li>
+                   <li>Step 15: Get new gene file from Data Library</li>
+                   <li>Step 16: Repeat workflow</li>                   
+                   <li>Step 17: Generate list of unique gene names</li>   
+                   <li>Step 18: Cleaning up</li>           
+                 </dir>"
       backdrop: true
 
-    - title: "Part 1: Naive approach - Step 1: Obtain peaks from GEO"
+    - title: "<b>Part 1: Naive approach - Step 1: Obtain peaks from GEO</b>"
+      content: "We will now proceed to download the list of peaks (the file <b>'GSE37268_mof3.out.hpeak.txt.gz'</b>) from <a href=\"http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE37268\" target=\"_blank\">GEO</a> to your computer and then <b>upload</b> the same file to Galaxy."
+      backdrop: true
+
+    - title: "<b>Part 1: Naive approach - Step 1: Obtain peaks from GEO</b>"
       element: ".upload-button"
-      intro: "Use the upload button to upload the file to Galaxy.<br>
-              Click 'Next' and the tour will take you to the Upload screen"
+      intro: "Use the upload button to upload the file to Galaxy.<br><br>
+              Click <b>'Next'</b> and the tour will take you to the Upload screen"
       position: "right"
       postclick:
         - ".upload-button"
 
-    - title: "Part 1: Naive approach - Step 1: Obtain peaks from GEO"
+    - title: "<b>Part 1: Naive approach - Step 1: Obtain peaks from GEO</b>"
       element: "button#btn-local"
-      intro: "This is the upload screen.<br>
-              Simply click 'Next' and tour will open up your file directory for you to select the downloaded 'GSE37268_mof3.out.hpeak.txt.gz'."
+      intro: "This is the upload screen.<br><br>
+              Simply click <b>'Next'</b> and tour will open up your file directory for you to select the downloaded <b>'GSE37268_mof3.out.hpeak.txt.gz'</b>."
       position: "top"
       postclick:
         - "button#btn-local"
 
-    - title: "Part 1: Naive approach - Step 1: Obtain peaks from GEO"
+    - title: "<b>Part 1: Naive approach - Step 1: Obtain peaks from GEO</b>"
       element: "button#btn-start"
-      intro: "Now that you've selected the file, select 'mm9' as the genome.<br>
-              Click 'Next' and the tour will 'Start' the upload.<br>
+      intro: "Now that you've selected the file, select <b>'mm9'</b> as the genome.<br><br>
+              Click <b>'Next'</b> and the tour will <b>'Start'</b> the upload.<br>
               Galaxy will automatically unpack the file."
       position: "bottom"
       postclick:
         - "button#btn-start"
         - "button#btn-close"
 
-    - title: "Part 1: Naive approach - Step 1: Obtain peaks from GEO"
+    - title: "<b>Part 1: Naive approach - Step 1: Obtain peaks from GEO</b>"
       element: "#right"
-      intro: "This is your history! All analysis steps will be recorded and can be redone at any time.<br>
-              You should be able to see your uploaded file here in a few moments"
+      intro: "This is your history!<br><br>
+              All <b>analysis steps will be recorded</b> and can be redone at any time.<br><br>
+              You should be able to see your uploaded file here in a few moments."
       position: "left"
 
-    - title: "Part 1: Naive approach - Step 1: Obtain peaks from GEO"
+    - title: "<b>Part 1: Naive approach - Step 1: Obtain peaks from GEO</b>"
       element: "#right"
-      intro: "This file (Galaxy Dataset | GSE37268_mof3.out.hpeak.txt) is not in any standard format and just by looking at it, we cannot find out what the numbers in the different columns mean.<br>
+      intro: "This file <b>(Galaxy Dataset | GSE37268_mof3.out.hpeak.txt)</b> is not in any standard format and just by looking at it, we cannot find out what the numbers in the different columns mean.<br><br>
               In the paper they mention that they used the peak caller <a href=\"www.sph.umich.edu/csg/qin/HPeak/Readme.html\">HPeak</a>."
       position: "left"
 
-    - title: "Part 1: Naive approach - Step 1: Obtain peaks from GEO"
+    - title: "<b>Part 1: Naive approach - Step 1: Obtain peaks from GEO</b>"
       element: "#right"
-      intro: "By looking at the HPeak manual we can find out that the columns contain the following information:<br>
-               1. chromosome name*<br> 
-               2. start coordinate<br> 
-               3. end coordinate<br> 
-               4. length<br> 
-               5. location within the peak that has the highest hypothetical DNA fragment coverage (summit)<br> 
-               6. not relevant<br> 
-               7. not relevant<br><br><br> 
+      intro: "According to the <b>HPeak manual</b>, we see that the <b>columns</b> contain the following information:<br><br>
+              <ol>
+                <li>chromosome name*</li>
+                <li>start coordinate</li>
+                <li>end coordinate</li>
+                <li>length</li>
+                <li>location within the peak that has the highest hypothetical DNA fragment coverage (summit)</li>
+                <li>not relevant</li>
+                <li>not relevant</li>
+              </ol> 
               <b>Note: The first column only contains the chromosome number, and X and Y are replaced by 20 and 21 for easier numerical manipulations.</b>"
       position: "left"
 
-    - title: "Part 1: Naive approach - Step 2: Get genes from UCSC"
+    - title: "<b>Part 1: Naive approach - Step 2: Get genes from UCSC</b>"
       element: '#tool-search-query'
-      intro: "We also need a list of genes in mouse, which we can obtain from UCSC.<br>
+      intro: "We also need a list of genes in mouse, which we can obtain from <b>UCSC</b>.<br><br>
               Galaxy has the UCSC table browser integrated as a tool, so we don't need to download the data to our computers.<br><br>
-              <b>Note: You can use 'tool search' to locate tools. Tools may take a couple of moments to load, please bear with us.</b>"
+              <b>Note:</b> You can use 'tool search' to locate tools. Tools may take a couple of moments to load, please bear with us."
       position: "right"
       
-    - title: "Part 1: Naive approach - Step 2: Get genes from UCSC"
+    - title: "<b>Part 1: Naive approach - Step 2: Get genes from UCSC</b>"
       element: "#tool-search-query"
-      intro: "You can now type and select 'UCSC Main table browser' or you can click on the link at the end of this dialog box and it will take you to UCSC Table Browser.<br><br>
+      intro: "You can now type and select <b>'UCSC Main table browser'</b> or you can click on the link at the end of this dialog box and it will take you to UCSC Table Browser.<br><br>
               <b>Follow this set of instructions when you are redirected to the UCSC table browser:</b><br>
-              1. Select clade 'Mammal', genome 'Mouse', assembly 'mm9'<br>
-              2. Select group 'Genes and Gene Prediction Tracks', track 'RefSeq Genes'<br>
-              3. Select table 'refGene'<br>
-              4. Select region 'genome'<br>
-              5. Select output format 'BED'<br>
-              6. Click button 'get output'<br>
-              7. Click button 'Send query to Galaxy'<br><br>
-              <a href=\"https://genome.ucsc.edu/cgi-bin/hgTables?GALAXY_URL=http%3A//127.0.0.1%3A8080/tool_runner&tool_id=ucsc_table_direct1&hgta_compressType=none&sendToGalaxy=1&hgta_outputType=bed\" target=\"_blank\">Click here to redirect to UCSC Table Browser</a>"      
+              <ol>
+                <li>Select clade 'Mammal', genome 'Mouse', assembly 'mm9'</li>
+                <li>Select group 'Genes and Gene Prediction Tracks', track 'RefSeq Genes'</li>
+                <li>Select table 'refGene'</li>
+                <li>Select region 'genome'</li>
+                <li>Select output format 'BED'</li>
+                <li>Click button 'get output'</li>
+                <li>Click button 'Send query to Galaxy'</li>
+              </ol> 
+              <a href=\"https://genome.ucsc.edu/cgi-bin/hgTables?GALAXY_URL=http%3A//127.0.0.1%3A8080/tool_runner&tool_id=ucsc_table_direct1&hgta_compressType=none&sendToGalaxy=1&hgta_outputType=bed\" target=\"_blank\"><b>Click here to redirect to UCSC Table Browser</b></a>"      
       position: "right"      
       
-    - title: "Part 1: Naive approach - Step 2: Get genes from UCSC"
+    - title: "<b>Part 1: Naive approach - Step 2: Get genes from UCSC</b>"
       content: "Welcome back to Galaxy."
       backdrop: true      
       
-    - title: "Part 1: Naive approach - Step 3: Adjust chromosome naming"
+    - title: "<b>Part 1: Naive approach - Step 3: Adjust chromosome naming</b>"
       element: "#right"
-      intro: "Have a look at both input files (either in the little preview window in the history or click on the eye icon to see one in the main frame) and find out what are the differences in the chromosome naming.<br>
-      <a href=\"http://galaxy.uni-freiburg.de/u/tutor/w/add-chr-at-beginning-of-line-imported-from-uploaded-file\" target=\"_blank\">Apply the following workflow to GSE37268_mof3.out.hpeak.txt</a><br>
-      After importing you can in the future use it by scrolling to the bottom of the tool panel, click on 'All workflows' and then on the workflow name.<br>
-      From carefully reading the HPeak manual, we should remember that it puts '20' and '21' instead of 'X' and 'Y'. So now the chromosome names all start properly with 'chr', but we still have 'chr20' and 'chr21' instead of 'chrX' and 'chrY'."
+      intro: "Have a look at both input files (either in the little <b>preview window</b> in the history or click on the <b>eye icon</b> to see one in the main frame) and find out what are the differences in the chromosome naming.<br><br>
+      <a href=\"http://galaxy.uni-freiburg.de/u/tutor/w/add-chr-at-beginning-of-line-imported-from-uploaded-file\" target=\"_blank\">Apply the following workflow to GSE37268_mof3.out.hpeak.txt</a><br><br>
+      After importing you can in the future use it by scrolling to the bottom of the tool panel, click on <b>'All workflows'</b> and then on the workflow name."
       position: "left"
 
-    - title: "Part 1: Naive approach - Step 3: Adjust chromosome naming"
+    - title: "<b>Part 1: Naive approach - Step 3: Adjust chromosome naming</b>"
+      element: "#right"
+      intro: "<b>From carefully reading the HPeak manual, we should remember that it puts '20' and '21' instead of 'X' and 'Y'.</b><br><br>
+              So now the chromosome names all start properly with 'chr', but we still have 'chr20' and 'chr21' instead of 'chrX' and 'chrY'."
+      position: "left"
+
+    - title: "<b>Part 1: Naive approach - Step 3: Adjust chromosome naming</b>"
       element: '#tool-search-query' 
-      intro: "Type and select the text manipulation tool 'Replace text'."
+      intro: "Type and select the text manipulation tool <b>'Replace text'</b>."
 
     - element: '#center-panel'
       intro: "Have a look at the tool's parameters.<br>     
-              Input: result of workflow (awk on data X)<br>
-              Find pattern: chr20<br>
-              Replace with: chrX<br>
-              Check 'find whole words'<br>
-              Replace text in: specific column, in column c1<br>
-              Do the same for 'chr21' and 'chrY', make sure you use the result of the first replacement as input (use rerun button and change input and search/replace).<br>
-              Make sure the format of the output file is 'interval', otherwise change it by clicking the pencil icon (do not convert to new format, but change data type).<br> 
-              Click 'Execute'."
+              <dir>
+                <li><b>Input:</b> result of workflow (awk on data X)</li>
+                <li><b>Find pattern:</b> chr20</li>
+                <li><b>Replace with:</b> chrX</li>
+                <li>Check <b>'find whole words'</b></li>
+                <li><b>Replace text in:</b> specific column, in column c1</li>
+                <li>Do the same for <b>'chr21' and 'chrY'</b>, make sure you use the result of the first replacement as input (use rerun button and change input and search/replace).</li>
+                <li>Make sure the format of the output file is <b>'interval'</b>, otherwise change it by clicking the <b>pencil icon</b> (do not convert to new format, but change data type).</li>
+                <li>Click <b>'Execute'</b></li>                                                
+              </dir>"
       position: "right"
               
-    - title: "Part 1: Naive approach - Step 4: Visualize peaks"
+    - title: "<b>Part 1: Naive approach - Step 4: Visualize peaks</b>"
       element: '#current-history-panel'
-      intro: "To visualize the peaks it's best to convert them to BED format first, because most viewers cannot deal with interval (because interval format just exists in Galaxy).<br>
-              Click on the pencil icon of the latest dataset.<br>
-              (Convert Format :: Convert to new format :: Convert Genomic Intervals to BED).<br>
-              Click 'Convert'."
+      intro: "To visualize the peaks it's best to convert them to <b>BED format</b> first, because most viewers cannot deal with <b>interval</b>. (because interval format just exists in Galaxy).<br><br>
+              <dir>
+                <li>Click on the <b>pencil icon</b> of the latest dataset</li>
+                <li><b>(Convert Format :: Convert to new format :: Convert Genomic Intervals to BED)</b></li>
+                <li>Click <b>'Convert'</b></li>
+              </dir>"
       position: "left"              
               
-    - title: "Part 1: Naive approach - Step 4: Visualize peaks"
+    - title: "<b>Part 1: Naive approach - Step 4: Visualize peaks</b>"
       element: '#current-history-panel'
-      intro: "Look at the new dataset. Some columns with generic names have been added and others were removed to comply to BED format rules.<br>
-             This generated a new dataset in BED format which we'll use for visualization. We will however continue to work with the interval dataset.<br>
+      intro: "Look at the new dataset. Some columns with generic names have been added and others were <b>removed to comply to BED format rules</b>.<br><br>
+             This generated a new dataset in BED format which we'll use for visualization. We will however continue to work with the interval dataset.<br><br>
              <b>Display in UCSC browser:</b><br>
-                Expand dataset in history panel<br>
-                Click on 'display at UCSC main'."
+                <dir>
+                  <li>Expand dataset in history panel</li>
+                  <li>Click on <b>'display at UCSC main'</b></li>
+                </dir>"
       position: "left"
       
-    - title: "Part 1: Naive approach - Step 4: Visualize peaks"
+    - title: "<b>Part 1: Naive approach - Step 4: Visualize peaks</b>"
       element: '#current-history-panel' 
       intro: "<b>Display in IGV:</b><br>
-                Go to the <a href=\"http://www.broadinstitute.org/software/igv/log-in\" target=\"_blank\">IGV Website</a><br>
-                Register or log-in to get access to the download area<br>
-                Click on any of the 'Launch' buttons (the more data you want to visualize, the bigger the GBs should be; here 750 MB should be enough)<br>
-                Inside IGV select 'Mouse mm9' in the upper left drop-down box<br>
-                <b>Then come back to Galaxy.</b>"
+              <dir>
+                <li>Go to the <a href=\"http://www.broadinstitute.org/software/igv/log-in\" target=\"_blank\">IGV Website</a><br>
+                <b>Register or log-in</b> to get access to the download area</li>
+                <li>Click on any of the <b>'Launch'</b> buttons (the more data you want to visualize, the bigger the GBs should be; here 750 MB should be enough)</li>
+                <li>Inside IGV select <b>'Mouse mm9'</b> in the upper left drop-down box</li>
+                <li>Then <b>come back</b> to Galaxy</li>
+              </dir>"
       position: "left"
       
-    - title: "Part 1: Naive approach - Step 4: Visualize peaks"
+    - title: "<b>Part 1: Naive approach - Step 4: Visualize peaks</b>"
       element: '#current-history-panel' 
-      intro: "Click on the link 'local' after 'display with IGV' (expanded history view of BED dataset)<br>
-                Go back to IGV, which should now have a track named 'galaxy_xxxx.bed'<br>
-                The way presented here adds a new track to a running instance of IGV and thus keeps all other tracks which you may have visualized. However, you can also launch IGV directly from within Galaxy by selecting 'web current' instead of 'local', but then each time a new instance of IGV is started (and this way it's not possible to view several tracks from Galaxy side-by-side)."
+      intro: "Click on the link <b>'local'</b> after <b>'display with IGV'</b> (expanded history view of BED dataset)<br><br>
+                Go back to IGV, which should now have a track named <b>'galaxy_xxxx.bed'</b><br><br>
+                The way presented here <b>adds a new track</b> to a running instance of IGV and thus keeps all other tracks which you may have visualized."
       position: "left"
-                
-    - title: "Part 1: Naive approach - Step 4: Visualize peaks"
+
+    - title: "<b>Part 1: Naive approach - Step 4: Visualize peaks</b>"
+      element: '#current-history-panel' 
+      intro: "<b>Note:</b> You can also launch IGV directly from within Galaxy by selecting <b>'web current'</b> instead of <b>'local'</b>, but then each time a new instance of IGV is started (and this way it's not possible to view several tracks from Galaxy side-by-side)."
+      position: "left"
+               
+    - title: "<b>Part 1: Naive approach - Step 4: Visualize peaks</b>"
       element: '#current-history-panel' 
       intro: "<b>Optional: Display in Galaxy's build-in browser Trackster:</b><br>
-                Click on Visualization icon.<br>
-                Click on 'Trackster'.<br> 
-                Type in a name and select 'mm9' as reference genome.<br>
-                Click 'Create'.<br>
-                Wait until data preparation is finished.<br>
-                Select a chromsome to look at."
+              <dir>
+                <li>Click on Visualization icon</li>
+                <li>Click on <b>'Trackster'</b></li>
+                <li>Type in a name and select <b>'mm9'</b> as reference genome</li>
+                <li>Click <b>'Create'</b></li>
+                <li>Wait until data preparation is finished</li>                                
+                <li><b>Select a chromsome</b> to look at</li>  
+              </dir>"
       position: "left"
       
-    - title: "Part 1: Naive approach - Step 4: Visualize peaks"
+    - title: "<b>Part 1: Naive approach - Step 4: Visualize peaks</b>"
       element: '#current-history-panel' 
-      intro: "Unfortunately Trackster doesn't already include gene tracks or other annotations, so we add our RefSeq genes as an additional track.<br>
-                Click on the 'Add tracks' icon (little plus in the upper right)<br>
-                Check your RefSeq genes dataset<br>
-                Click 'Insert' at the bottom (you may have to scroll down)<br>
-                Wait for data preparation to finish<br>
-                Save the visualization by clicking on the disk icon next to the plus icon<br>
-                Unlike the UCSC browser, Trackster will remember the whole visualization including the chromosome location you looked at when you save it. You can go back any time by selecting 'Visualization' in the top menu."
+      intro: "Unfortunately Trackster doesn't already include gene tracks or other annotations, so we <b>add our RefSeq genes as an additional track</b>.<br>
+              <dir>
+                <li>Click on the <b>'Add tracks'</b> icon (little plus in the upper right)</li>
+                <li>Check your RefSeq genes dataset</li>
+                <li>Click <b>'Insert'</b> at the bottom (you may have to scroll down)</li>
+                <li>Wait for data preparation to finish</li>
+                <li>Save the visualization by clicking on the disk icon next to the plus icon</li>             
+              </dir>
+              <b>Note:</b> Unlike the UCSC browser, Trackster will remember the whole visualization including the chromosome location you looked at when you saved it. You can go back any time by selecting <b>'Visualization'</b> in the top menu."
       position: "left"
       
-    - title: "Part 1: Naive approach - Step 5: Add promoter region to gene records"
+    - title: "<b>Part 1: Naive approach - Step 5: Add promoter region to gene records</b>"
       element: '#tool-search-query' 
-      intro: "Type and select the text manipulation tool 'Get flanks'."
+      intro: "Type and select the text manipulation tool <b>'Get flanks'</b>."
       position: "right"
       
-    - title: "Part 1: Naive approach - Step 5: Add promoter region to gene records"
+    - title: "<b>Part 1: Naive approach - Step 5: Add promoter region to gene records</b>"
       element: '#center-panel'
-      intro: "Input dataset: RefSeq genes from UCSC (UCSC Main on Mouse: refGene (genome))<br>
-              Options: Region: 'Around Start', Location: 'Upstream',  Offset: 10000, Length: 12000<br>
-              Inspect the resulting BED file and through comparing with the input find out what this operation actually did. Just look at the contents and compare the rows in the input to the rows in the output to find out how the start and end positions changed. Rename the dataset (by clicking on the pencil icon) to reflect your findings."
-      position: "right"
-              
-    - title: "Part 1: Naive approach - Step 6: Find overlaps"
-      element: '#tool-search-query' 
-      intro: "Type and select the text manipulation tool 'Intersect'.<br>
-              Return: Overlapping Intervals<br>
-              of: result of step 5 (Get flanks on data X)<br>
-              that intersect: result of step 3 (second Find and Replace)<br>
-              The order of the inputs is important! We want to end up with a list of genes, so the corresponding dataset needs to be the first input."
+      intro: "Look at the parameters of the 'Get flanks' tool:
+              <dir>
+                <li><b>Input dataset:</b> RefSeq genes from UCSC (UCSC Main on Mouse: refGene (genome))</li>
+                <li><b>Options:</b><br>
+                 Region: 'Around Start'<br>
+                 Location: 'Upstream'<br>
+                 Offset: 10000<br>
+                 Length: 12000</li>           
+              </dir>"
       position: "right"
 
-    - title: "Part 1: Naive approach - Step 6: Find overlaps"
+    - title: "<b>Part 1: Naive approach - Step 5: Add promoter region to gene records</b>"
+      element: '#current-history-panel' 
+      intro: "Inspect the resulting BED file and through comparing with the input to <b>find out what this operation actually did</b>.<br><br>
+              Just look at the contents and compare the rows in the input to the rows in the output to find out how the start and end positions changed.<br><br>
+              <b>Rename the dataset</b> (by clicking on the pencil icon) to reflect your findings."
+      position: "left"
+              
+    - title: "<b>Part 1: Naive approach - Step 6: Find overlaps</b>"
+      element: '#tool-search-query' 
+      intro: "Type and select the text manipulation tool <b>'Intersect'</b>."
+      position: "right"
+
+    - title: "<b>Part 1: Naive approach - Step 6: Find overlaps</b>"
       element: '#center-panel'
-      intro: "Return: Overlapping Intervals<br>
-              of: result of step 5 (Get flanks on data X)<br>
-              that intersect: result of step 3 (second Find and Replace)<br>
-              The order of the inputs is important! We want to end up with a list of genes, so the corresponding dataset needs to be the first input."
+      intro: "Look at the parameters of the 'Intersect' tool:
+              <dir>
+                <li><b>Return:</b> Overlapping Intervals</li>
+                <li><b>of:</b> result of step 5 (Get flanks on data X)</li>
+                <li><b>that intersect:</b> result of step 3 (second Find and Replace)</li>              
+              </dir>
+              The <b>order</b> of the inputs is important!<br><br>
+              We want to end up with a list of genes, so the corresponding dataset needs to be the first input."
       position: "right"
                     
-    - title: "Part 1: Naive approach - Step 7: Count genes on different chromosomes"
+    - title: "<b>Part 1: Naive approach - Step 7: Count genes on different chromosomes</b>"
       element: '#tool-search-query' 
-      intro: "Type and select the statistical tool 'Count occurrences of each record'.<br>
-             Input: result from step 6 (Intersect on data X and data X)<br>
-             Select column 1 (c1) with the chromosome names<br>
-             Here you can double-check if the previous steps were correct by comparing the numbers."              
+      intro: "Type and select the statistical tool <b>'Count occurrences of each record'</b>"              
       position: "right"
       
-    - title: "Part 1: Naive approach - Step 7: Count genes on different chromosomes"
+    - title: "<b>Part 1: Naive approach - Step 7: Count genes on different chromosomes</b>"
       element: '#center-panel'
-      intro: "Input: result from step 6 (Intersect on data X and data X)<br>
-             Select column 1 (c1) with the chromosome names<br>
-             Here you can double-check if the previous steps were correct by comparing the numbers." 
+      intro: "Look at the parameters of this statistical tool:
+              <dir>
+                <li><b>Input:</b> result from step 6 (Intersect on data X and data X)</li>
+                <li>Select column 1 (c1) with the chromosome names</li>            
+              </dir>
+              Here you can double-check if the previous steps were correct by <b>comparing the numbers</b>." 
       position: "right"
       
-    - title: "Part 1: Naive approach - Step 8: Draw barchart"
+    - title: "<b>Part 1: Naive approach - Step 8: Draw barchart</b>"
       element: '#tool-search-query' 
-      intro: "Type and select the tool 'Bar chart'."              
+      intro: "Type and select the tool <b>'Bar chart'</b>."              
       position: "right"
       
-    - title: "Part 1: Naive approach - Step 8: Draw barchart"
+    - title: "<b>Part 1: Naive approach - Step 8: Draw barchart</b>"
       element: '#center-panel'
-      intro: "Input: result of step 7<br>
-              Use X Tick labels: Yes, column 2<br>
-              Numerical column: c1<br>
-              Plot title is up to you<br>
-              Label for Y axis: number of genes<br><br>
-              Galaxy has a second option to visualise tabular data, with built-in dynamic visualisations:<br>
-              Expand the dataset view and click on the visualization icon (see step 4, same button as Trackster)<br>
-              Choose 'Charts'<br>
-              Enter a chart title, e.g. 'Genes on different chromsomes'<br>
-              Select 'Bar diagrams' -> 'Regular'<br>
-              On the top, click on 'Add Data'<br>
-              Enter a label, e.g. 'count'<br>
-              Values for x-axis: Column: 2 [str]<br>
-              Values for y-axis: Column: 1 [int]<br>
-              On the very top, click 'Draw'<br>
-              Visualization 'Genes on different chromosomes'"  
+      intro: "Look at the parameters of 'Bar chart':
+             <dir>
+                <li><b>Input:</b> result of step 7</li>
+                <li><b>Use X Tick labels:</b> Yes, column 2</li>
+                <li><b>Numerical column:</b> c1</li>
+                <li>Plot title is up to you</li>
+                <li><b>Label for Y axis:</b> number of genes</li> 
+              </dir>"  
+      position: "right"
+
+    - title: "<b>Part 1: Naive approach - Step 8: Draw barchart</b>"
+      element: '#center-panel'
+      intro: "Galaxy has a second option to visualise tabular data, with <b>built-in dynamic visualisations</b>:<br>
+              <dir>
+                <li>Expand the dataset view and click on the <b>visualization icon</b> (see step 4, same button as Trackster)</li>
+                <li>Choose <b>'Charts'</b></li>
+                <li>Enter a <b>chart title</b>, e.g. 'Genes on different chromsomes'</li>
+                <li>Select <b>'Bar diagrams' -> 'Regular'</b></li>
+                <li>On the top, click on <b>'Add Data'</b></li>
+                <li>Enter a <b>label</b>, e.g. 'count'</li>                
+                <li><b>Values for x-axis:</b> Column: 2 [str]</li>
+                <li><b>Values for y-axis:</b> Column: 1 [int]</li>
+                <li>On the very top, click <b>'Draw'</b></li>
+                <li>Visualization <b>'Genes on different chromosomes'</b></li>  
+              </dir>"  
       position: "right"
       
-    - title: "Part 1: Naive approach - Step 9: Name  your history"
+    - title: "<b>Part 1: Naive approach - Step 9: Name  your history</b>"
       element: "#current-history-panel > div.controls > div.title > div"
       intro: "Change the name of your history."
       position: "bottom"
       
-    - title: "Part 1: Naive approach - Step 10: Make a workflow out of steps 6 to 8"
+    - title: "<b>Part 1: Naive approach - Step 10: Make a workflow out of steps 6 to 8</b>"
       element: '#history-options-button'   
       intro: "Please extract your history to a workflow.<br>
-              (History options :: Extract workflow)<br>
-              Do not include 'awk',  either 'Find and Replace', 'Convert Genomic Intervals to strict BED' and 'Get flanks'<br>
-              Click 'Create Workflow'."
+              <b>(History options :: Extract workflow)</b><br><br>
+              <b>Do not include:</b> 'awk',  either 'Find and Replace', 'Convert Genomic Intervals to strict BED' and 'Get flanks'<br><br>
+              Click <b>'Create Workflow'</b>."
       position: "left"      
 
-    - title: "Part 1: Naive approach - Step 10: Make a workflow out of steps 6 to 8"
+    - title: "<b>Part 1: Naive approach - Step 10: Make a workflow out of steps 6 to 8</b>"
       element: '#history-options-button'   
-      intro: "To make sure our workflow is correct we look at it in the editor and make some small adjustments.
-              Click on the name of your new workflow and select 'Edit'<br>
-              The individual steps are displayed as boxes and their outputs and inputs are connected through lines. When you click on a box you see the tool options on the right. Besides the tools you should see two additional boxes titled 'Input dataset'. These represent the data we want to feed into our workflow. Although we have our two inputs in the workflow they are missing their connection to the first tool (Intersect), because we didn't carry over the intermediate steps. Connect each input dataset to the Intersect tool by dragging the arrow pointing outwards on the right of its box (which denotes an output) to an arrow on the left of the Intersect box pointing inwards (which denotes an input). Connect each input dataset with a different input of Intersect.<br>
-              You should also change the names of the input datasets to remember that the first one contains genes and the second one peaks. Don't forget to save it in the end by clicking on 'Options' (top right) and selecting 'Save'."
+      intro: "To make sure our workflow is correct, we look at it in the editor and make some small adjustments.<br><br>
+              <dir>
+                <li>Click on the name of your new workflow and select <b>'Edit'</b></li>
+                <li>The individual steps are displayed as boxes, their <b>outputs and inputs are connected through lines</b></li>
+                <li>When you click on a box you see the tool options on the right. Besides the tools, you should see two additional boxes titled <b>'Input dataset'</b>. These represent the data we want to feed into our workflow.</li>                       
+              </dir>"  
       position: "left"     
 
-    - title: "Part 1: Naive approach - Step 11: Share workflow"
+    - title: "<b>Part 1: Naive approach - Step 10: Make a workflow out of steps 6 to 8</b>"
+      element: '#history-options-button'   
+      intro: "To make sure our workflow is correct, we look at it in the editor and make some small adjustments.<br><br>
+              <dir>
+                <li>Although we have our two inputs in the workflow they are missing their connection to the first tool <b>(Intersect)</b>, because we didn't carry over the intermediate steps</li>
+                <li><b>Connect</b> each input dataset to the Intersect tool by <b>dragging</b> the arrow pointing outwards on the right of its box (which denotes an output) to an arrow on the left of the Intersect box pointing inwards (which denotes an input). Connect each input dataset with a different input of Intersect</li>
+                <li>You should also <b>change the names</b> of the input datasets to remember that the first one contains genes and the second one peaks. Don't forget to save it in the end by clicking on <b>'Options'</b> (top right) and selecting <b>'Save'</b></li>                
+              </dir>"  
+      position: "left"    
+
+    - title: "<b>Part 1: Naive approach - Step 11: Sharing workflow</b>"
       element: 'a[href$="/workflow/list_for_run"]' 
-      intro: "Share your new workflow with the person to your left.<br>
-              Click on your workflow's name and select 'Share or publish'<br>
-              Click 'Share with a user'<br>
-              Enter the email address of the person to your left (the same as he/she uses to login to Galaxy)<br>
-              Hit 'Share'<br>
-              Wait for the person on your right to do the same<br>
-              Reload the workflows by clicking again on 'Workflow' in the top menu<br>
-              Under the header 'Workflows shared with you by others' you should now see your right neighbor's workflow<br>
-              Click on its name and select 'View'<br>
-              Compare with your workflow"
+      intro: "You can share your new workflow.<br>
+              <dir>
+                <li>Click on your workflow's name and select <b>'Share or publish'</b></li>
+                <li>Click <b>'Share with a user'</b></li>
+                <li>Enter the email address of the person you wish to share your workflow with.(the same as he/she uses to login to Galaxy)</li>
+                <li>Hit <b>'Share'</b></li> 
+              </dir>"
       position: "top"
 
-    - title: "Part 2: More sophisticated approach - Step 13: Copy over peak file to new history"
+    - title: "<b>Part 1: Naive approach - Step 11: Sharing workflow</b>"
+      element: '#center-panel'   
+      intro: "If a workflow has been shared with you, you can find it under <b>'Workflows shared with you by others'</b>:<br>
+              <dir>
+                <li>Click on a workflow name and select <b>'View'</b></li>
+                <li>You can compare the workflows of others with your workflow</li>  
+              </dir>"
+      position: "right"
+
+    - title: "<b>Part 2: More sophisticated approach - Step 13: Copy over peak file to new history</b>"
       content: "We now move on to a more sophisticated approach."
       backdrop: "true"
 
-    - title: "Part 2: More sophisticated approach - Step 12: Create new history"
+    - title: "<b>Part 2: More sophisticated approach - Step 12: Create new history</b>"
       element: '#history-options-button' 
       intro: "Let's create a new history:<br>
-              (History options :: Create New)"
+              <b>(History options :: Create New)</b>"
       position: "left"
 
-    - title: "Part 2: More sophisticated approach - Step 12: Create new history"
+    - title: "<b>Part 2: More sophisticated approach - Step 12: Create new history</b>"
       element: '#current-history-panel > div.controls > div.title > div' 
       intro: "Change the name of the new history."
       position: "left"
 
-    - title: "Part 2: More sophisticated approach - Step 13: Copy over peak file to new history"
+    - title: "<b>Part 2: More sophisticated approach - Step 13: Copy over peak file to new history</b>"
       element: '#history-options-button' 
-      intro: "(History options :: Saved Histories)<br>
-             Click on name of the old history to reactivate it.<br>
-             (History options :: Copy Datasets)<br>
-             Select result of step 3 (result of second Find and Replace)<br>
-             Select new history as destination<br>
-             Click 'Copy History Items'<br>
-             In the green bar appearing on the top, click on the name of the new history to go back to it"
+      intro: "Copying files into a new history:<br>
+              <dir>
+                <li><b>(History options :: Saved Histories)</b></li>
+                <li>Click on name of the old history to reactivate it.</li>
+                <li><b>(History options :: Copy Datasets)</b></li>
+                <li>Select result of step 3 (result of second Find and Replace)</li>
+                <li>Select new history as destination</li>
+                <li>Click <b>'Copy History Items'</b></li>                
+                <li>In the green bar appearing on the top, click on the name of the new history to go back to it</li>
+              </dir>"
       position: "left"
 
-    - title: "Part 2: More sophisticated approach - Step 14: Make peak summit file"
+    - title: "<b>Part 2: More sophisticated approach - Step 14: Make peak summit file</b>"
       element: '#center-panel'   
-      intro: "In part 1 we used an overlap definition of 1 bp (default setting). In order to get a more meaningful definition, we now want to use the information of the position of the peak summit and check for overlap of the summits with genes. So we need to generate a new BED file from the original peak file that contains the positions of the peak summits. The start of the summit is the start of the peak (column 2) plus the location within the peak that has the highest hypothetical DNA fragment coverage (column 5) and as the end we simply define start + 1.<br>
-We proceed to use the tool <b>'Compute an expression on every row'</b> twice to add two rows to the peak file containing start and end of the summit."
+      intro: "In part 1 we used an overlap definition of 1 bp (default setting). In order to get a more meaningful definition, we now want to use the information of the position of the peak summit and check for overlap of the summits with genes.<br>
+              So..."
       position: "right"
 
-    - title: "Part 2: More sophisticated approach - Step 14: Make peak summit file"
+    - title: "<b>Part 2: More sophisticated approach - Step 14: Make peak summit file</b>"
+      element: '#center-panel'   
+      intro: "...we need to generate a new BED file from the original peak file that contains the positions of the peak summits. The start of the summit is the start of the peak (column 2) plus the location within the peak that has the highest hypothetical DNA fragment coverage (column 5) and as the end we simply define start + 1.<br><br>
+              We proceed to use the tool <b>'Compute an expression on every row'</b> twice to add two rows to the peak file containing start and end of the summit."
+      position: "right"
+
+    - title: "<b>Part 2: More sophisticated approach - Step 14: Make peak summit file</b>"
+      element: '#center-panel'   
+      intro: "We proceed to use the tool <b>'Compute an expression on every row'</b> twice to add two rows to the peak file containing start and end of the summit."
+      position: "right"
+
+    - title: "<b>Part 2: More sophisticated approach - Step 14: Make peak summit file</b>"
       element: "#tool-search-query"   
-      intro: "Type and select the tool 'Compute an expression on every row'."
+      intro: "Type and select the tool <b>'Compute an expression on every row'</b>."
       position: "right"
 
-    - title: "Part 2: More sophisticated approach - Step 14: Make peak summit file"
+    - title: "<b>Part 2: More sophisticated approach - Step 14: Make peak summit file</b>"
       element: '#center-panel'  
-      intro: "Expression: c2+c5, as a new column to peak file, round: yes<br>
-              Expression: c8+1, as a new column to result of previous execution of compute tool, round: yes<br>
+      intro: "<b>Compute an expression on every row:</b>
+              <dir>
+                <li>Expression: c2+c5, as a new column to peak file, round: yes</li>
+                <li>Expression: c8+1, as a new column to result of previous execution of compute tool, round: yes</li>
+              </dir>      
               Then we cut out just the chromosome and start, end of the summit."
       position: "right"
 
-    - title: "Part 2: More sophisticated approach - Step 14: Make peak summit file"
+    - title: "<b>Part 2: More sophisticated approach - Step 14: Make peak summit file</b>"
       element: "#tool-search-query"   
-      intro: "Type and select the tool 'Cut columns from a table'."
+      intro: "Type and select the tool <b>'Cut columns from a table'</b>."
       position: "right"
 
-    - title: "Part 2: More sophisticated approach - Step 14: Make peak summit file"
+    - title: "<b>Part 2: More sophisticated approach - Step 14: Make peak summit file</b>"
       element: '#center-panel'    
-      intro: "Columns: c1,c8,c9<br>
-              Change the format of the output file to 'interval' by clicking the pencil icon, selecting 'interval' as new type and clicking 'Save' (do not convert to new format, but change data type). Consider renaming this dataset to remember that it contains the peak summits."
+      intro: "<b>Cut columns from a table:</b>
+              <dir>
+                <li>Columns: c1,c8,c9<br></li>
+              </dir>        
+              Change the format of the output file by clicking the <b>pencil icon</b>, selecting <b>'interval'</b> as new type and clicking <b>'Save'</b> (do not convert to new format, but change data type).<br>
+              Consider <b>renaming</b> this dataset to remember that it contains the peak summits."
       position: "right"
 
-    - title: "Part 2: More sophisticated approach - Step 15: Get new gene file from Data Library"
+    - title: "<b>Part 2: More sophisticated approach - Step 15: Get new gene file from Data Library</b>"
       element: '#center-panel'   
-      intro: "The RefSeq genes we downloaded from UCSC did only contain the RefSeq identifiers, but not the gene names. To get a list of gene names in the end, we use another BED file from the Data Libraries*.<br>
-             (Shared Data :: Data Libraries)<br>
-             Click on library 'Genomes + Annotations'<br>
-             Expand folder 'Annotations'<br>
-             Check the dataset 'mm9.RefSeq_genes_from_UCSC'<br>
-             Select 'Import to current history' on the bottom<br>
-             Hit 'Go'<br>
-            (* There are several ways to get the gene names in, if you need to do it yourself. On way is to retrieve a mapping through Biomart and then join the two files (tool: Join, Substract and Group -> Join two Datasets side by side on a specified field). Another to get the full RefSeq table from UCSC and manually convert it to BED format.)"
+      intro: "The RefSeq genes we downloaded from UCSC did only contain the RefSeq identifiers, but not the gene names.<br><br>
+             To get a list of gene names in the end, we use <b>another BED file from the Data Libraries*</b>.<br>
+              <dir>
+                <li><b>(Shared Data :: Data Libraries)</b></li>
+                <li>Click on library <b>'Genomes + Annotations'</b></li>
+                <li> Expand folder <b>'Annotations'</b></li>
+                <li>Check the dataset </b>'mm9.RefSeq_genes_from_UCSC'</b></li>
+                <li>Select <b>'Import to current history'</b> on the bottom</li>
+                <li>Hit <b>'Go'</b></li>                
+              </dir>"
       position: "right"
 
-    - title: "Part 2: More sophisticated approach - Step 16: Repeat workflow"
+    - title: "<b>Part 2: More sophisticated approach - Step 15: Get new gene file from Data Library</b>"
+      element: '#center-panel'   
+      intro: "There are <b>several ways to get the gene names in</b>, if you need to do it yourself.<br> 
+             <dir>
+                <li><b>One way</b> is to retrieve a mapping through Biomart and then join the two files (tool: Join, Substract and Group -> Join two Datasets side by side on a specified field).</li>
+                <li><b>Another way</b> is to get the full RefSeq table from UCSC and manually convert it to BED format</li> 
+             </dir>"
+      position: "right"
+
+    - title: "<b>Part 2: More sophisticated approach - Step 16: Repeat workflow</b>"
       element: 'a[href$="/workflow/list_for_run"]' 
-      intro: "Execute the workflow you generated in part 1 on the peak summit file and the new RefSeq genes BED file. "
+      intro: "Execute the <b>workflow you generated</b> in part 1 on the peak summit file and the new RefSeq genes BED file. "
       position: "left"
 
-    - title: "Part 2: More sophisticated approach - Step 17: Generate list of unique gene names"
+    - title: "<b>Part 2: More sophisticated approach - Step 17: Generate list of unique gene names</b>"
       element: '#center-panel' 
-      intro: "Run the public Workflow <a href=\"http://galaxy.uni-freiburg.de/u/tutor/w/imported-proper-unique\" target=\"_blank\"> Proper unique on a column</a> on the result of the intersect and choose the column with the gene names. The result should be a dataset with one column and 10 841 lines."
+      intro: "Run the public Workflow <a href=\"http://galaxy.uni-freiburg.de/u/tutor/w/imported-proper-unique\" target=\"_blank\"> Proper unique on a column</a> <b>on the result of the intersect</b> and choose the column with the gene names. The result should be a dataset with one column and 10841 lines."
       position: "left"
 
-    - title: "Part 2: More sophisticated approach - Step 18: Cleaning up"
+    - title: "<b>Part 2: More sophisticated approach - Step 18: Cleaning up</b>"
       element: '#history-options-button'  
       intro: "Delete old history:<br>
-              (History options :: Saved histories)<br>
-              Check your old history from part 1<br>
-              Click 'Delete Permanently' on the bottom"
+             <dir>
+                <li><b>(History options :: Saved histories)</b></li>
+                <li>Check your old history from part 1</li>
+                <li>Click <b>'Delete Permanently'</b> on the bottom</li>  
+              </dir>"
       position: "left"
 
-    - title: "Part 2: More sophisticated approach - Step 18: Cleaning up"
+    - title: "<b>Part 2: More sophisticated approach - Step 18: Cleaning up</b>"
       element: 'a[href$="/workflow/list_for_run"]'   
       intro: "Download your workflow:<br>
-              Click on your workflow's name and select 'Download or Export'<br>
-              Click on 'Download workflow to file' so that it can be saved or imported into another Galaxy server<br>
-              Save the workflow file on your computer"
+              <dir>
+                <li>Click on your workflow's name and select <b>'Download or Export'</b></li>
+                <li>Click on <b>'Download workflow to file'</b> so that it can be saved or imported into another Galaxy server</li>
+                <li>Save the workflow file on your computer</li>
+              </dir>"
       position: "left"
 
-    - title: "Part 2: More sophisticated approach - Step 18: Cleaning up"
+    - title: "<b>Part 2: More sophisticated approach - Step 18: Cleaning up</b>"
       element: '#history-options-button'
-      intro: "Clean up second history:<br>
-              Delete all datasets that are neither initial input nor final results.<br>
-              Everything that can be easily recreated or is just part of an intermediate step can go.<br>
-              <b>What I would keep are:</b><br>
+      intro: "<b>Clean up second history:</b><br>
+              <dir>
+                <li>Delete all datasets that are neither initial input nor final results</li>
+                <li>Everything that can be easily recreated or is just part of an intermediate step can go</li>
+              </dir>"
+      position: "left"
+
+    - title: "<b>Part 2: More sophisticated approach - Step 18: Cleaning up</b>"
+      element: '#history-options-button'
+      intro: "<b>What I would keep are:</b><br>
               - the peak summits<br>
               - the intersect result<br>
               - the bar chart<br>
-              - the list of unique gene names
-              Ffor a real analysis I would recommend to also download all final results. Deleted datasets can be undeleted for some time (see history options) and will only be ultimately removed from the server if they aren't used somewhere else or by somebody else and stay deleted for several weeks."
+              - the list of unique gene names<br><br>
+              <b>For a real analysis,</b> it is recommended to also download all final results."
+      position: "left"
+
+    - title: "<b>Part 2: More sophisticated approach - Step 18: Cleaning up</b>"
+      element: '#history-options-button'
+      intro: "<b>Note:</b> Deleted datasets can be undeleted for some time (see history options) and will only be ultimately removed from the server if they aren't used somewhere else or by somebody else and stay deleted for several weeks."
       position: "left"
             
-    - title: "Enjoy your Galaxy Histories"
+    - title: "<b>Enjoy your Galaxy Histories</b>"
       intro: "Thanks for taking this tour! Happy research with Galaxy!"
                                                                   
