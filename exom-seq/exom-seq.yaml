@@ -12,19 +12,16 @@ steps:
       content: "Together we will go through the following steps:<br>
                  <dir>
                  <b>
-                   <li>Creating a new history</li>
-                   <li>Renaming a history</li>
                    <li>Data Acquisition</li>
                    <li>Using Exome Sequencing Tools</li>
-                   <li>Calling Variants - 'FreeBayes'</li>                   
-                   <li>Post-Process Data - 'VcfAllelicPrimitives'</li>   
-                   <li>Filtering VCF files - 'SnpSift Filter'</li> 
-                   <li>Annotate variants - 'SnpSift Annotate'</li> 
-                   <li>Annotate variants - 'SnpEff'</li> 
+                   <li>Calling Variants with 'FreeBayes'</li>                   
+                   <li>Post-Process Data with 'VcfAllelicPrimitives'</li>   
+                   <li>Filtering VCF files with 'SnpSift Filter'</li> 
+                   <li>Annotate variants with 'SnpSift Annotate'</li> 
+                   <li>Annotate variants with 'SnpEff'</li> 
                    <li>Extracting a Workflow</li> 
-                   <li>Running a Workflow</li> 
-                   <li>File Combination - 'VCFcombine'</li> 
-                   <li>Database Creation - 'GEMINI load'</li>                 
+                   <li>File Combination with 'VCFcombine'</li> 
+                   <li>Database Creation with 'GEMINI load'</li>                 
                  </b>
                  </dir>"
       backdrop: true
@@ -37,20 +34,20 @@ steps:
       preclick:
         - '#center-panel'
 
-    - title: "<b>Renaming a history</b>"
-      element: "#current-history-panel > div.controls > div.title > div"
+    - title: "<b>Rename the history</b>"
+      element: "#current-history-panel > div.controls"
       intro: "Change the name of the new history to <b>'Exome Sequencing'</b>."
-      position: "bottom"
+      position: "left"
 
     - title: "<b>Data Acquisition</b>"
-      content: "We will start with a bunch of <b>BAM</b> files.<br><br>
+      content: "We will start with a few of <b>BAM</b> files.<br><br>
                 You will get one BAM file with all aligned reads for each family member.<br><br>
-                The mother/father are healthy but the child has a yet <b>unknown</b> disease."
+                The mother/father are healthy but the child has a yet unknown disease."
       backdrop: true
 
     - title: "<b>Data Acquisition</b>"
       element: ".upload-button"
-      intro: "We will import all 3 BAM's into into the history we just created.<br><br>
+      intro: "We will import all three BAM's into into the history we just created.<br><br>
               Click <b>'Next'</b> and the tour will take you to the Upload screen."
       position: "right"
       postclick:
@@ -59,8 +56,8 @@ steps:
     - title: "<b>Data Acquisition</b>"
       element: "button#btn-new"
       intro: "The sample training data available on github is a good place to start.<br><br>
-              Simple click <b>'Next'</b> and the links to the training data will be automatically inserted and ready for upload.<br><br>
-              Later on, when want to upload other data, you can do so by clicking the <b>'Paste/Fetch Data'</b> button."
+              Simply click <b>'Next'</b> and the links to the training data will be automatically inserted and ready for upload.<br><br>
+              Later on, when you want to upload other data, you can do so by clicking the <b>'Paste/Fetch Data'</b> button."
       position: "top"
       postclick:
         - "button#btn-new"
@@ -77,16 +74,16 @@ steps:
     - title: "<b>Data Acquisition</b>"
       element: "button#btn-start"
       intro: "Click on <b>'Start'</b> to upload the data into your Galaxy history."
-      position: "bottom"
+      position: "top"
       
     - title: "<b>Data Acquisition</b>"
       element: "button#btn-close"
       intro: "The upload may take awhile.<br><br>
               Hit the <b>close</b> button when you see that the files are uploaded into your history."
-      position: "bottom"
+      position: "top"
       
     - title: "<b>Data Acquisition</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "You've acquired your data. Now let's <b>'Edit Attributes'</b> of the uploaded files.<br><br>
               We will learn to edit the following attributes of uploaded files:                         
                  <dir>
@@ -99,7 +96,7 @@ steps:
       position: "left" 
 
     - title: "<b>Editing Attributes</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "For each of the 3 uploaded files:<br>
                1. Click on the pencil icon beside the file to <b>'Edit Attributes'</b>.<br><br>
                2. In the <b>'Attributes'</b> tab:<br>
@@ -122,20 +119,13 @@ steps:
     - title: "<b>Call Variants with 'FreeBayes'</b>"
       element: '#tool-search-query'
       intro: "You can use <b>'tool search'</b> to locate tools.<br><br>
-              For starters, click <b>'Next'</b> and the tour will bring up the <b>'FreeBayes'</b> tool for you.<br><br>
+              Search for <b>'FreeBayes'</b> and select it.<br><br>
               Tools may take a couple of moments to load, please bear with us."
       position: "right"
 
     - title: "<b>Call Variants with 'FreeBayes'</b>"
-      intro: "This is the FreeBayes tool.<br>"
-      position: "right"
-      preclick:
-        - 'a[href$="/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fdevteam%2Ffreebayes%2Ffreebayes%2F0.4.1"]'
-      postclick:
-        - "#title_stats a"
-
-    - element: '#uid-0'
-      intro: "Have a look at the tool's parameters.<br><br>     
+      element: '#uid-0'
+      intro: "Have a look at the tool's parameters of the  <b>'FreeBayes'</b> tool.<br><br>     
               Please select the first dataset as <b>Sample BAM file</b>.<br>
               You can choose basic setting and call all variants from the <b>'Father'</b>.<br>
               Have a look at the advanced settings, to get an impression of how powerful it can be.<br><br> 
@@ -143,7 +133,7 @@ steps:
       position: "right"
       
     - title: "<b>Call Variants with 'FreeBayes'</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "Congratulations, you have created your first <b>VCF</b> file. It contains your called variants.<br><br>
               It will remain stored in your history.<br><br>
               Click the <b>'eye'</b> icon to view the data."
@@ -152,7 +142,7 @@ steps:
         - '#execute'
 
     - title: "<b>Call Variants with 'FreeBayes'</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "Further information on your VCF file:
                  <dir>
                    <li>The lines starting with <b>'#' are header lines</b>. They mostly explain the keywords which are used to convey the information underneath.</li>
@@ -178,7 +168,7 @@ steps:
       position: "right"
 
     - title: "<b>Post-Process Data with 'VcfAllelicPrimitives'</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "<b>Good job !</b><br><br>
               You used the 'VcfAllelicPrimitives' tool to maintain site/allele-level and genotype-level annotations when decomposing."
       position: "left"
@@ -231,15 +221,15 @@ steps:
     - title: "<b>Data Acquisition</b>"
       element: "button#btn-start"
       intro: "Click on <b>'Start'</b> to upload the vcf file into your Galaxy history."
-      position: "bottom"
+      position: "top"
 
     - title: "<b>Data Acquisition</b>"
       element: "button#btn-close"
       intro: "Hit the <b>close</b> button when the upload is complete."
-      position: "bottom"
+      position: "top"
 
     - title: "<b>Data Acquisition</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "You've acquired the dbSNP.vcf file.<br>
               Let's <b>rename it</b>. You know how to do this.<br><br>
               Click on the pencil icon beside the file to <b>'Edit Attributes'</b>.<br>
@@ -349,15 +339,15 @@ steps:
     - title: "<b>Database Creation with 'GEMINI load'</b>"
       element: "button#btn-start"
       intro: "Click on <b>'Start'</b> to upload the vcf file into your Galaxy history."
-      position: "bottom"
+      position: "top"
 
     - title: "<b>Database Creation with 'GEMINI load'</b>"
       element: "button#btn-close"
       intro: "Hit the <b>close</b> button when the upload is complete."
-      position: "bottom"
+      position: "top"
 
     - title: "<b>Database Creation with 'GEMINI load'</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "Click on the pencil icon to <b>rename the pedigree file</b>."          
       position: "left"
 
@@ -408,7 +398,7 @@ steps:
         - '#center-panel'
 
     - title: "<b>Database Creation with 'GEMINI load'</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "'Gemini load' has been executed."
       position: "left"
       preclick:
@@ -434,12 +424,12 @@ steps:
     - title: "<b>Test Database Upload</b>"
       element: "button#btn-start"
       intro: "Click on <b>'Start'</b> to upload the test database into your Galaxy history."
-      position: "bottom"
+      position: "top"
 
     - title: "<b>Test Database Upload</b>"
       element: "button#btn-close"
       intro: "Hit the <b>close</b> button when the upload is complete."
-      position: "bottom"
+      position: "top"
 
     - title: "<b>Test Database Upload</b>"
       element: '#current-history-panel'
@@ -470,7 +460,7 @@ steps:
         - '#center-panel'         
         
     - title: "<b>A tutorial on Exome Sequencing</b>"
-      element: '#current-history-panel'
+      element: "#current-history-panel > div.controls"
       intro: "You have reached the end of the tour.<br><br>
               You can look at <b>interesting positions in your variants</b>.<br><br>
               Before you finish, you can revisit your 3 BAM files (Mother, Father & Patient) and display them with <b>local IGV</b>."
