@@ -67,9 +67,9 @@ steps:
       intro: "Links Acquired !"
       position: "top"
       textinsert: |
-        https://github.com/bgruening/training_data/blob/master/Father
-        https://github.com/bgruening/training_data/blob/master/Mother
-        https://github.com/bgruening/training_data/blob/master/Patient   
+        https://github.com/bgruening/training_data/raw/master/Father
+        https://github.com/bgruening/training_data/raw/master/Mother
+        https://github.com/bgruening/training_data/raw/master/Patient   
        
     - title: "<b>Data Acquisition</b>"
       element: "button#btn-start"
@@ -85,12 +85,11 @@ steps:
     - title: "<b>Data Acquisition</b>"
       element: "#current-history-panel > div.controls"
       intro: "You've acquired your data. Now let's <b>'Edit Attributes'</b> of the uploaded files.<br><br>
-              We will learn to edit the following attributes of uploaded files:                         
+              We will edit the following attributes of the uploaded files:                         
                  <dir>
                  <b>
                    <li>File names</li>
                    <li>Database/Build</li>
-                   <li>Datatypes</li>           
                  </b>
                  </dir>"
       position: "left" 
@@ -101,9 +100,7 @@ steps:
                1. Click on the pencil icon beside the file to <b>'Edit Attributes'</b>.<br><br>
                2. In the <b>'Attributes'</b> tab:<br>
                   - Edit the name (Mother/Father/Patient as appropriate).<br>
-                  - Set Database/Build as <b>'Human Feb.2009(GRCh37/hg19)(hg19)'</b>.<br><br>
-               3. In the <b>'Datatype'</b> tab:<br>
-                  - Set New Type as <b>'bam'</b>."                         
+                  - Set Database/Build as <b>'Human Feb.2009(GRCh37/hg19)(hg19)'</b>.<br><br>"
       position: "left" 
       
     - title: "<b>Data Acquisition Complete !</b>"
@@ -136,13 +133,12 @@ steps:
       element: "#current-history-panel > div.controls"
       intro: "Congratulations, you have created your first <b>VCF</b> file. It contains your called variants.<br><br>
               It will remain stored in your history.<br><br>
-              Click the <b>'eye'</b> icon to view the data."
+              Click the <b>'eye'</b> icon to view the data once the history item turns green."
       position: "left"
       preclick:
         - '#execute'
 
     - title: "<b>Call Variants with 'FreeBayes'</b>"
-      element: "#current-history-panel > div.controls"
       intro: "Further information on your VCF file:
                  <dir>
                    <li>The lines starting with <b>'#' are header lines</b>. They mostly explain the keywords which are used to convey the information underneath.</li>
@@ -197,7 +193,7 @@ steps:
 
     - title: "<b>Annotate your variants</b>"
       content: "We will now annotate our VCF file with some additional information.<br><br>
-                If an SNP is located on a protein coding gene it can <b>potentially affect</b> or even stop the protein from working properly.<br><br>
+                If a SNP is located on a protein coding gene it can <b>potentially affect</b> or even stop the protein from working properly.<br><br>
                 We will now add such functional information of known SNPs that are collected in a database called <b>dbSNP</b>."
       backdrop: true
       
@@ -215,7 +211,7 @@ steps:
     - title: "<b>Data Acquisition</b>"
       element: "textarea#text-content"
       intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
-              <b>https://github.com/bgruening/training_data/blob/master/dbSNP_138.hg19.vcf</b>"
+              <b>https://github.com/bgruening/training_data/raw/master/dbSNP_138.hg19.vcf</b>"
       position: "top"
       
     - title: "<b>Data Acquisition</b>"
@@ -275,9 +271,9 @@ steps:
 
     - title: "<b>Extracting a Workflow</b>"
       element: '#history-options-button'   
-      intro: "Please extract your history to a workflow.<br>
+      intro: "Please extract a workflow from your history.<br>
               <b>(History options :: Extract workflow :: Create Workflow)</b><br><br>
-              Give your worklow a catchy name. For example <b>'BAM to VCF in one click'</b>"
+              Give your workflow a catchy name. For example <b>'BAM to VCF in one click'</b>"
       position: "left"
 
     - title: "<b>Extracting a Workflow</b>" 
@@ -292,13 +288,12 @@ steps:
     - title: "<b>Running a Workflow"
       element: '#center-panel'   
       intro: "Select the workflow constructed from your history.<br><br>
-              Check that the parameters are set correctly and choose as input the <b>second bam file</b> (which should be the second History item) and then select the <b>'Run workflow'</b> option."
+              First choose the <b>second bam file</b> as your first input (which should be the second History item) and the dbSNP.vcf as second input and then select the <b>'Run workflow'</b> option.<br>Then run the workflow on the third bam file."
       position: "right"
 
     - title: "<b>Annotation Completed !</b>"
       content: "You should now have <b>3 annotated variant files</b>, from mother, father and the patient.<br>
                 It might be a good idea to <b>rename them accordingly</b>."
-      backdrop: true
 
     - title: "<b>File Combination with 'VCFcombine'</b>"
       element: '#tool-search-query'   
@@ -333,7 +328,7 @@ steps:
     - title: "<b>Database Creation with 'GEMINI load'</b>"
       element: "textarea#text-content"
       intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
-              <b>https://github.com/bgruening/training_data/blob/master/family.ped</b>"
+              <b>https://github.com/bgruening/training_data/raw/master/family.ped</b>"
       position: "top"
 
     - title: "<b>Database Creation with 'GEMINI load'</b>"
@@ -385,7 +380,7 @@ steps:
     - title: "<b>Database Creation with 'GEMINI load'</b>"
       element: 'versions'
       intro: "Good ! You've selected the 'Gemini load' tool.<br>
-              Change the <b>version</b> to 0.10.0.0."
+              Keep <b>version</b> 0.18.1.0."
       position: "right"
 
     - title: "<b>Database Creation with 'GEMINI load'</b>"
@@ -418,7 +413,7 @@ steps:
     - title: "<b>Test Database Upload</b>"
       element: "textarea#text-content"
       intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
-              <b>https://github.com/bgruening/training_data/blob/master/GEMINI%20test%20database.tar.gz</b>"
+              <b>https://github.com/bgruening/training_data/raw/master/GEMINI%20test%20database.tar.gz</b>"
       position: "top"
 
     - title: "<b>Test Database Upload</b>"
@@ -469,5 +464,6 @@ steps:
         - '#center-panel'     
 
     - title: "<b>A tutorial on Exome Sequencing</b>"
-      intro: "Thank You for trying out our tutorial."
+      intro: "Thank You for going through our tutorial."
       backdrop: true                                                                                              
+
