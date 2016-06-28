@@ -1,9 +1,9 @@
-name: RAD Sequencing
-description: Sequencing Restriction Enzyme associated sites in a genome
-title_default: "RAD Sequencing"
+name: MultiQC
+description: Aggregate results from bioinformatics analyses across many samples into a single report
+title_default: "MultiQC reporting"
 steps:
-    - title: "A tutorial on RAD Sequencing"
-      content: "This tour will walk you through the process of RAD Sequencing to identify SNP and analyse data to produce population genomics statistics or genetic maps.<br><br>
+    - title: "A tutorial on analysis reporting on Galaxy through MultiQC"
+      content: "This tour will walk you through the process of aggregate results from bioinformatics analyses across many samples into a single report using MultiQC.<br><br>
                 Read and Follow the instructions before clicking 'Next'<br>
                 Click 'Prev' in case you missed out on any step"
       backdrop: true
@@ -18,18 +18,17 @@ steps:
 
     - title: "Rename history"
       element: "#current-history-panel > div.controls > div.title > div"
-      intro: "Change the name of the new history to 'RAD Sequencing'."
+      intro: "Change the name of the new history to 'MultiQC on RNAseq analysis'."
       position: "bottom"
 
     - title: "Data Acquisition"
-      content: "We will start with a bunch of FastQ files.<br>
-                You will get one FastQ file for each sequencing lane, then demultiplexing to have individuals files corresponding to different populations.<br>
-                There is a structure on these Stickelback populations...."
+      content: "We will start with a bunch of files (pair-end FastQ files, a reference genome Fasta file, an annotation gtf file.<br>
+                You will get two FastQ files for each individual chicken, then analyse expression data of these 6 chickens and generate a report for all RNA-seq analysis step with MultiQC."
       backdrop: true
 
     - title: "Data Acquisition"
       element: ".upload-button"
-      intro: "We will import RADseq data into the history we just created.<br>
+      intro: "We will import RNAseq data into the history we just created.<br>
               Click 'Next' and the tour will take you to the Upload screen"
       position: "right"
       postclick:
@@ -49,8 +48,21 @@ steps:
       intro: "Links Acquired !"
       position: "top"
       textinsert: |
-        http://emme.genouest.org/pydio/data/public/61190a?dl=true&file=/f1d01c7e1f/ProcessRadtagsInput.fastqsanger
-        http://emme.genouest.org/pydio/data/public/99bbff?dl=true&file=/f9b7a64d23/Barcodes_sbf1.tabular
+              http://cloud-26.genouest.org/datasets/2f94e8ae9edff68a/display
+              http://cloud-26.genouest.org/datasets/8237ee2988567c1c/display
+              http://cloud-26.genouest.org/datasets/f09437b8822035f7/display
+              http://cloud-26.genouest.org/datasets/fb85969571388350/display
+              http://cloud-26.genouest.org/datasets/ba751ee0539fff04/display
+              http://cloud-26.genouest.org/datasets/63cd3858d057a6d1/display
+              http://cloud-26.genouest.org/datasets/b472e2eb553fa0d1/display
+              http://cloud-26.genouest.org/datasets/a7db2fac67043c7e/display
+              http://cloud-26.genouest.org/datasets/4ff6f47412c3e65e/display
+              http://cloud-26.genouest.org/datasets/e89067bb68bee7a0/display
+              http://cloud-26.genouest.org/datasets/0c5ffef6d88a1e97/display
+              http://cloud-26.genouest.org/datasets/911dde3ddb677bcd/display
+              http://cloud-26.genouest.org/datasets/d413a19dec13d11e/display
+              http://cloud-26.genouest.org/datasets/5a1cff6882ddb5b2/display
+              http://cloud-26.genouest.org/datasets/ff5476bcf6c921fa/display
 
     - title: "Data Acquisition"
       element: "button#btn-start"
@@ -79,24 +91,24 @@ steps:
       content: "Now that your data is ready, let's use some tools.<br>"
       backdrop: true
 
-    - title: "NGS: Building Loci from RAD"
+    - title: "NGS data quality check"
       element: '#tool-search-query'
-      intro: "RAD Sequencing uses various tools.<br>
+      intro: "Various tools may be used, we will here search for FastQC.<br>
               Available tools appear here in the tool menu."
       position: "right"
       
-    - title: "Building loci from RAD"
+    - title: "NGS data quality check"
       element: '#tool-search-query'
       intro: "You can use 'tool search' to locate tools.<br>
-              For starters, click 'Next' and the tour will bring up the 'STACKS' tools for you.<br>
+              For starters, click 'Next' and the tour will bring up the 'FastQC' tool for you.<br>
               Tools may take a couple of moments to load, please bear with us."
       position: "right"
 
-    - title: "Building loci with 'STACKS'"
-      intro: "This is the STACKS Process Radtag tool.<br>"
+    - title: "NGS data quality check using 'FastQC'"
+      intro: "This is the FastQC quality check tool.<br>"
       position: "right"
       preclick:
-        - 'a[href$="/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fcmonjeau%2Fstacks%2FSTACKSprocrad%2F1.1.0"]'
+        - 'a[href$="/tool_runner?tool_id=toolshed.g2.bx.psu.edu%2repos%2devteam%2fastqc%2fastqc%20.65"]'
       postclick:
         - "#title_stats a"
 
