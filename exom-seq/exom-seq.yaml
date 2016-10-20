@@ -14,14 +14,14 @@ steps:
                  <b>
                    <li>Data Acquisition</li>
                    <li>Using Exome Sequencing Tools</li>
-                   <li>Calling Variants with 'FreeBayes'</li>                   
-                   <li>Post-Process Data with 'VcfAllelicPrimitives'</li>   
+                   <li>Calling Variants with 'FreeBayes'</li>
+                   <li>Post-Process Data with 'VcfAllelicPrimitives'</li>
                    <li>Filtering VCF files with 'SnpSift Filter'</li> 
                    <li>Annotate variants with 'SnpSift Annotate'</li> 
                    <li>Annotate variants with 'SnpEff'</li> 
                    <li>Extracting a Workflow</li> 
-                   <li>File Combination with 'VCFcombine'</li> 
-                   <li>Database Creation with 'GEMINI load'</li>                 
+                   <li>File Combination with 'VCFcombine'</li>
+                   <li>Database Creation with 'GEMINI load'</li>
                  </b>
                  </dir>"
       backdrop: true
@@ -63,13 +63,13 @@ steps:
         - "button#btn-new"
         
     - title: "<b>Data Acquisition</b>"
-      element: "textarea#text-content"
+      element: ".upload-text-content:first"
       intro: "Links Acquired !"
       position: "top"
       textinsert: |
         https://github.com/bgruening/training_data/raw/master/Father
         https://github.com/bgruening/training_data/raw/master/Mother
-        https://github.com/bgruening/training_data/raw/master/Patient   
+        https://github.com/bgruening/training_data/raw/master/Patient
        
     - title: "<b>Data Acquisition</b>"
       element: "button#btn-start"
@@ -85,7 +85,7 @@ steps:
     - title: "<b>Data Acquisition</b>"
       element: "#current-history-panel > div.controls"
       intro: "You've acquired your data. Now let's <b>'Edit Attributes'</b> of the uploaded files.<br><br>
-              We will edit the following attributes of the uploaded files:                         
+              We will edit the following attributes of the uploaded files:
                  <dir>
                  <b>
                    <li>File names</li>
@@ -209,7 +209,7 @@ steps:
       position: "top"
 
     - title: "<b>Data Acquisition</b>"
-      element: "textarea#text-content"
+      element: ".upload-text-content:first"
       intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
               <b>https://github.com/bgruening/training_data/raw/master/dbSNP_138.hg19.vcf</b>"
       position: "top"
@@ -326,7 +326,7 @@ steps:
       position: "top"
 
     - title: "<b>Database Creation with 'GEMINI load'</b>"
-      element: "textarea#text-content"
+      element: ".upload-text-content:first"
       intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
               <b>https://github.com/bgruening/training_data/raw/master/family.ped</b>"
       position: "top"
@@ -343,7 +343,7 @@ steps:
 
     - title: "<b>Database Creation with 'GEMINI load'</b>"
       element: "#current-history-panel > div.controls"
-      intro: "Click on the pencil icon to <b>rename the pedigree file</b>."          
+      intro: "Click on the pencil icon to <b>rename the pedigree file</b>."
       position: "left"
 
     - title: "<b>Database Creation with 'GEMINI load'</b>"
@@ -397,7 +397,7 @@ steps:
       intro: "'Gemini load' has been executed."
       position: "left"
       preclick:
-        - '#center-panel'                     
+        - '#center-panel'
 
     - title: "<b>Test Database Upload</b>"
       element: ".upload-button"   
@@ -411,7 +411,7 @@ steps:
       position: "top"
 
     - title: "<b>Test Database Upload</b>"
-      element: "textarea#text-content"
+      element: ".upload-text-content:first"
       intro: "Copy the link given below and paste it into the higlighted text area.<br><br>
               <b>https://github.com/bgruening/training_data/raw/master/GEMINI%20test%20database.tar.gz</b>"
       position: "top"
@@ -429,7 +429,7 @@ steps:
     - title: "<b>Test Database Upload</b>"
       element: '#current-history-panel'
       intro: "Click on the pencil icon to rename the test database.<br>
-              Also change the datatype to <b>'gemini.sqlite'</b> under the <b>'Datatype'</b> tab."          
+              Also change the datatype to <b>'gemini.sqlite'</b> under the <b>'Datatype'</b> tab."
       position: "left"
       
     - title: "<b>A tutorial on Exome Sequencing</b>"
@@ -443,7 +443,7 @@ steps:
                  </dir>" 
       position: "right"
       preclick:
-        - '#center-panel'       
+        - '#center-panel'
         
     - title: "<b>A tutorial on Exome Sequencing</b>"
       element: '#tool-search-query'
@@ -452,7 +452,7 @@ steps:
               Search for <b>'gemini'</b> and explore the database we have provided or the one that you calculated."
       position: "right"
       preclick:
-        - '#center-panel'         
+        - '#center-panel'
         
     - title: "<b>A tutorial on Exome Sequencing</b>"
       element: "#current-history-panel > div.controls"
@@ -461,9 +461,9 @@ steps:
               Before you finish, you can revisit your 3 BAM files (Mother, Father & Patient) and display them with <b>local IGV</b>."
       position: "left"
       preclick:
-        - '#center-panel'     
+        - '#center-panel'
 
     - title: "<b>A tutorial on Exome Sequencing</b>"
       intro: "Thank You for going through our tutorial."
-      backdrop: true                                                                                              
+      backdrop: true
 

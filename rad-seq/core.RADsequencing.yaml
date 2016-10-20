@@ -45,7 +45,7 @@ steps:
         - "button#btn-new"
         
     - title: "Data Acquisition"
-      element: "textarea#text-content"
+      element: ".upload-text-content:first"
       intro: "Links Acquired !"
       position: "top"
       textinsert: |
@@ -151,7 +151,7 @@ steps:
         - "button#btn-new"
 
     - title: "Data Acquisition"
-      element: "textarea#text-content"
+      element: ".upload-text-content:first"
       intro: "Links Acquired !"
       position: "top"
       textinsert: |
